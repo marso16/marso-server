@@ -20,7 +20,7 @@ const app = express();
 // ====== Load Environment Variables ======
 const PORT = process.env.PORT || 5000;
 const MONGODB_URI = process.env.MONGODB_URI;
-const ALLOWED_ORIGINS = process.env.ALLOWED_ORIGINS?.split(",") || [];
+// const ALLOWED_ORIGINS = process.env.ALLOWED_ORIGINS?.split(",") || [];
 
 // ====== Validation ======
 if (!MONGODB_URI) {
@@ -32,7 +32,7 @@ if (!MONGODB_URI) {
 app.use(helmet());
 
 app.use(
-  cors({
+  cors(/*{
     origin: function (origin, callback) {
       if (!origin || ALLOWED_ORIGINS.includes(origin)) {
         callback(null, true);
@@ -41,7 +41,7 @@ app.use(
       }
     },
     credentials: true,
-  })
+  }*/)
 );
 
 if (isProduction) {
