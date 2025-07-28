@@ -64,7 +64,7 @@ app.use("/api/orders", orderRoutes);
 app.use("/api/payment", paymentRoutes);
 app.use("/api/wishlist", wishlistRoutes);
 
-app.get("/api/health", (req, res) => {
+app.get("/", (req, res) => {
   res.status(200).json({ message: "Hello World from backend" });
 });
 
