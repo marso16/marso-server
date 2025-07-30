@@ -294,13 +294,13 @@ const addProductReview = async (req, res) => {
 
 const deleteAllProducts = async (req, res) => {
   try {
-    const products = await Product.deleteMany({});
-
-    if (products.deletedCount === 0) {
-      return res.status(404).json({ message: "No products to delete" });
-    }
-    res.status(200).json({ message: "All products deleted!" });
+    const result = await Product.deleteMany({});
+    res.status(200).json({
+      message: "All products deleted successfully",
+      deletedCount: result.deletedCount,
+    });
   } catch (error) {
+    console.error("Error deleting all products:", error);
     res.status(500).json({ error: error.message });
   }
 };
